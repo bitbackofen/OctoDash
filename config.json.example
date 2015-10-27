@@ -1,0 +1,13 @@
+{
+  "influx": {
+    "host": "127.0.0.1",
+    "port": 8086,
+    "username": "root",
+    "password": "password",
+    "database": "printer"
+  },
+  "octoprint": {
+    "host": "127.0.0.1",
+    "apikey": "abcdefghiyklmnopqrs"
+  }
+}
