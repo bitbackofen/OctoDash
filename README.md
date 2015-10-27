@@ -14,11 +14,17 @@ $ npm install
 
 Package on npm is coming soon.
 
-## Usage
+## Usage script
 
 Copy `config.json.example` to `config.json` and add your values.
 
 Periodically run `main.js`.
+
+## Usage Grafana
+
+Import the `grafana_dashboard_example.json` into Grafana.
+
+![](https://github.com/bitbackofen/OctoDash/raw/master/screenshots/grafana.png)
 
 ## License
 
