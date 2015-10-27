@@ -1,0 +1,397 @@
+{
+  "id": 3,
+  "title": "Felix",
+  "originalTitle": "Felix",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Bed",
+              "column": "value",
+              "function": "mean",
+              "query": "select mean(value) from \"t_bed\" where $timeFilter group by time($interval) order asc",
+              "series": "t_bed"
+            },
+            {
+              "alias": "Target",
+              "column": "value",
+              "function": "mean",
+              "query": "select mean(value) from \"t_bed_target\" where $timeFilter group by time($interval) order asc",
+              "series": "t_bed_target",
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Bed",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "celsius",
+            "celsius"
+          ]
+        }
+      ],
+      "title": "Stats"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Extruder",
+              "column": "value",
+              "function": "mean",
+              "query": "select mean(value) from \"t_ex\" where $timeFilter group by time($interval) order asc",
+              "series": "t_ex"
+            },
+            {
+              "alias": "Target",
+              "column": "value",
+              "function": "mean",
+              "query": "select mean(value) from \"t_ex_target\" where $timeFilter group by time($interval) order asc",
+              "series": "t_ex_target",
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Extruder",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "celsius",
+            "celsius"
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "id": 3,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "%",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(151, 237, 151, 0.18)",
+            "full": true,
+            "lineColor": "rgb(31, 246, 0)",
+            "show": true
+          },
+          "targets": [
+            {
+              "column": "value",
+              "function": "last",
+              "groupby_field": "",
+              "hide": false,
+              "interval": "",
+              "query": "select last(value) from \"completion\" where $timeFilter group by time($interval) order asc",
+              "rawQuery": false,
+              "series": "completion"
+            }
+          ],
+          "thresholds": "0,40,80",
+          "title": "Completion",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "s",
+          "hideTimeOverride": false,
+          "id": 5,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(75, 140, 75, 0.18)",
+            "full": true,
+            "lineColor": "rgb(59, 189, 32)",
+            "show": true
+          },
+          "targets": [
+            {
+              "alias": "",
+              "column": "value",
+              "function": "last",
+              "groupby_field": "",
+              "interval": "",
+              "query": "select last(value) from \"printTime\" where $timeFilter group by time($interval) order asc",
+              "series": "printTime"
+            }
+          ],
+          "thresholds": "",
+          "timeFrom": null,
+          "title": "Print Time",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "s",
+          "id": 4,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(75, 140, 75, 0.18)",
+            "full": true,
+            "lineColor": "rgb(59, 189, 32)",
+            "show": true
+          },
+          "targets": [
+            {
+              "alias": "",
+              "column": "value",
+              "function": "last",
+              "interval": "",
+              "query": "select last(value) from \"printTimeLeft\" where $timeFilter group by time($interval) order asc",
+              "series": "printTimeLeft"
+            }
+          ],
+          "thresholds": "",
+          "title": "Print Time Left",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "title": "New row"
+    }
+  ],
+  "nav": [
+    {
+      "collapse": false,
+      "enable": true,
+      "notice": false,
+      "now": true,
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "status": "Stable",
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ],
+      "type": "timepicker"
+    }
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "1m",
+  "schemaVersion": 6,
+  "version": 31,
+  "links": []
+}
