@@ -1,7 +1,5 @@
 # OctoDash
 
-> Fetch data from OctoPrint, pass it to InfluxDB and finally visualise it using Grafana
-
 Useful for plotting your 3D printer progress.
 
 ## Install
