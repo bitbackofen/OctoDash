@@ -14,6 +14,14 @@ $ npm install
 
 Package on npm is coming soon.
 
+## Requirements
+
+This script relies on the following (already configured) software:
+
+- InfluxDB
+- OctoPrint
+- Grafana
+
 ## Usage script
 
 Copy `config.json.example` to `config.json` and add your values.
