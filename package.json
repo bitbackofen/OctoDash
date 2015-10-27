@@ -4,7 +4,7 @@
   "description": "A script for fetching data from OctoPrint, passing it to InfluxDB and finally visualising it using Grafana",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "xo"
   },
   "repository": {
     "type": "git",
@@ -23,9 +23,12 @@
     "url": "https://github.com/bitbackofen/OctoDash/issues"
   },
   "homepage": "https://github.com/bitbackofen/OctoDash#readme",
-  "dependencies" :
-  { "influx" : "3.0.0",
+  "dependencies": {
+    "influx": "3.0.0",
     "lockfile": "1.0.0",
     "node-rest-client": "1.4.3"
+  },
+  "devDependencies": {
+    "xo": "^0.10.0"
   }
 }
