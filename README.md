@@ -24,7 +24,13 @@ This script relies on the following (already configured) software:
 
 Copy `config.json.example` to `config.json` and add your values.
 
-Periodically run `main.js`.
+Periodically run `main.js`. For example with a cron job:
+
+```
+* * * * * <username> node /usr/local/src/OctoDash/main.js
+```
+
+This will update the database with the latest information every minute.
 
 ## Usage Grafana
 
