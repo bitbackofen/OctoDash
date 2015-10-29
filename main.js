@@ -42,15 +42,18 @@ lockFile.lock('/tmp/felix.lock', function () {
 
 	// job status
 	rclient.get('http://' + ip + '/api/job', args, function (data) {
-		// Progress
-		var completion = {value: data.progress.completion, time: time};
-		client.writePoint('completion', completion, {});
-
-		// Print Time
-		var printTime = {value: data.progress.printTime, time: time};
-		client.writePoint('printTime', printTime, {});
-		var printTimeLeft = {value: data.progress.printTimeLeft, time: time};
-		client.writePoint('printTimeLeft', printTimeLeft, {});
+		// Only update the job status while the printer is printing
+		if(data.state == "Printing" || data.state == "Paused") {
+			// Progress
+			var completion = {value: data.progress.completion, time: time};
+			client.writePoint('completion', completion, {});
+	
+			// Print Time
+			var printTime = {value: data.progress.printTime, time: time};
+			client.writePoint('printTime', printTime, {});
+			var printTimeLeft = {value: data.progress.printTimeLeft, time: time};
+			client.writePoint('printTimeLeft', printTimeLeft, {});
+		}
 	}).on('error', function (err) {
 		console.log('something went wrong on the request', err.request.options);
 	});
