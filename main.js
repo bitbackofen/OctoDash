@@ -42,12 +42,16 @@ lockFile.lock('/tmp/felix.lock', function () {
 
 	// job status
 	rclient.get('http://' + ip + '/api/job', args, function (data) {
+		// Status
+		var status = {value: data.state, time: time};
+		client.writePoint('status', status, {});
+
 		// Only update the job status while the printer is printing
 		if(data.state == "Printing" || data.state == "Paused") {
 			// Progress
 			var completion = {value: data.progress.completion, time: time};
 			client.writePoint('completion', completion, {});
-	
+
 			// Print Time
 			var printTime = {value: data.progress.printTime, time: time};
 			client.writePoint('printTime', printTime, {});
