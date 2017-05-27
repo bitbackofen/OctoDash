@@ -7,7 +7,7 @@ var Client = require('node-rest-client').Client;
 var Config = require('./config.json');
 
 // influx
-var client = influx(Object.assign({}, Config.influx));
+var client = new influx.InfluxDB(Object.assign({}, Config.influx));
 
 // rest
 var rclient = new Client();
@@ -28,35 +28,66 @@ lockFile.lock('/tmp/felix.lock', function () {
 	rclient.get('http://' + ip + '/api/printer', args, function (data) {
 		// Bed
 		var tBed = {value: data.temperature.bed.actual, time: time};
-		client.writePoint('t_bed', tBed, {});
 		var tBedTarget = {value: data.temperature.bed.target, time: time};
-		client.writePoint('t_bed_target', tBedTarget, {});
 		// Extruder
 		var tEx = {value: data.temperature.tool0.actual, time: time};
-		client.writePoint('t_ex', tEx, {});
 		var tExTarget = {value: data.temperature.tool0.target, time: time};
-		client.writePoint('t_ex_target', tExTarget, {});
+
+		client.writeMeasurement(
+			'temperature', [
+				{
+					fields: {
+						t_bed: tBed.value,
+						t_bed_target: tBedTarget.value,
+						t_ex: tEx.value,
+						t_ex_target: tExTarget.value
+					},
+				}
+			]
+		).catch(err => {
+			console.error(`Error saving data to InfluxDB! ${err.stack}`)
+		})
+
 	}).on('error', function (err) {
 		console.log('something went wrong on the request', err.request.options);
 	});
+
 
 	// job status
 	rclient.get('http://' + ip + '/api/job', args, function (data) {
 		// Status
 		var status = {value: data.state, time: time};
-		client.writePoint('status', status, {});
+
+		client.writeMeasurement(
+			'status', [
+				{
+					fields: {
+						status: status.value
+					}
+				}
+			]
+		)
 
 		// Only update the job status while the printer is printing
 		if(data.state == "Printing" || data.state == "Paused") {
 			// Progress
 			var completion = {value: data.progress.completion, time: time};
-			client.writePoint('completion', completion, {});
 
 			// Print Time
 			var printTime = {value: data.progress.printTime, time: time};
-			client.writePoint('printTime', printTime, {});
 			var printTimeLeft = {value: data.progress.printTimeLeft, time: time};
-			client.writePoint('printTimeLeft', printTimeLeft, {});
+
+			client.writeMeasurement(
+			'status', [
+				{
+					fields: {
+						completion: completion.value,
+						printTime: printTime.value,
+						printTimeLeft: printTimeLeft.value,
+					},
+				}
+			]
+		)
 		}
 	}).on('error', function (err) {
 		console.log('something went wrong on the request', err.request.options);
