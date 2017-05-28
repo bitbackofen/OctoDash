@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/bitbackofen/OctoDash#readme",
   "dependencies": {
-    "influx": "3.0.0",
+    "influx": "5.0.5",
     "lockfile": "1.0.0",
     "node-rest-client": "1.4.3"
   },
